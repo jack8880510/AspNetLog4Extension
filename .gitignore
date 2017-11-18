@@ -1,0 +1,6 @@
+Example/bin
+Example/log
+Example/obj
+Log4Extension/bin
+Log4Extension/obj
+*.userprefs
