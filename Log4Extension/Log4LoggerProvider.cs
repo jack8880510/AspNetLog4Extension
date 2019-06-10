@@ -25,6 +25,12 @@ namespace Log4Extension
         /// </summary>
         private static readonly Func<string, LogLevel, bool> trueFilter = (arg1, arg2) => true;
 
+        static Log4LoggerProvider()
+        {
+            //创建Log4net配置仓库
+            LoggerManager.CreateRepository(REPOSITORY_NAME);
+        }
+
         /// <summary>
         /// 该日志提供器所产出的日志组件集合
         /// </summary>
@@ -36,7 +42,7 @@ namespace Log4Extension
         /// </summary>
         /// <param name="configuration">Core配置对象.</param>
         public Log4LoggerProvider(IConfiguration configuration)
-            : this(new ConfigurationLog4LoggerSettings(configuration))
+            : this(new Log4LoggerSettings(configuration))
         {
         }
 
@@ -50,8 +56,8 @@ namespace Log4Extension
                 throw new ArgumentNullException(nameof(settings));
             }
             this._settings = settings;
-            //创建Log4net配置仓库
-            var logRps = LoggerManager.CreateRepository(REPOSITORY_NAME);
+            //获取Log4net配置仓库
+            var logRps = LoggerManager.GetRepository(REPOSITORY_NAME);
             //根据路径中的配置文件来初始化仓库，如果文件不存在不会报错，但不会记录日志文件
             XmlConfigurator.Configure(logRps, new FileInfo(this._settings.Log4netConfigPath));
             if (this._settings.ChangeToken != null)

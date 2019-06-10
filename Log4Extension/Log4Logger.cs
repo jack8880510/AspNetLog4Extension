@@ -122,9 +122,14 @@ namespace Log4Extension
                 return;
             }
 
+            var msg = new CustomerLogFormat()
+            {
+                Message = formatter.Invoke(state, exception),
+            };
+
             this._logger.Log(null,      //日志调研堆栈的边界类型，即调用者
                              LevelMapping(logLevel),    //日志级别
-                             formatter.Invoke(state, exception),         //日志的内容 
+                             msg,         //日志的内容 
                              exception);        //如果是异常日志则传入异常对象
         }
 

@@ -13,7 +13,10 @@ namespace Example.Controllers
     {
         public HomeController(ILogger<HomeController> logger)
         {
-            logger.LogDebug("Hello Logger");
+            logger.Log<Order>(LogLevel.Warning, new EventId(0), new Order(), null, (o, ex) =>
+            {
+                return o.Id;
+            });
         }
 
         public IActionResult Index()

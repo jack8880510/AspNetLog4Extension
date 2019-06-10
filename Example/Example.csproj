@@ -15,4 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Log4Extension\Log4Extension.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appsettings.Development.json" />
+  </ItemGroup>
 </Project>

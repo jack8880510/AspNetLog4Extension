@@ -4,3 +4,4 @@ Example/obj
 Log4Extension/bin
 Log4Extension/obj
 *.userprefs
+.vs/AspNetCoreLog4ExtensionSln/xs
